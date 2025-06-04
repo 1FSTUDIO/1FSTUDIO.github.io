@@ -6,8 +6,12 @@
   <title>焦慮測驗＋圖卡產生器</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    @font-face {
+    font-family: jf-openhuninn;
+    src: url(../font/jf-openhuninn-2.0.ttf);
+    }
     body {
-      font-family: "Helvetica Neue", sans-serif;
+      font-family: jf-openhuninn;
       margin: 0;
       background-color: #f9f9f9;
     }
@@ -27,18 +31,24 @@
       margin-bottom: 1.5rem;
       color: #333;
     }
+    .question_img {
+      width: 100%
+    }
+
     .options {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 1rem;
     }
     .option-btn {
+      font-family: jf-openhuninn;
+      height: 4rem;
       padding: 0.8rem 1rem;
       border: none;
-      border-radius: 1rem;
-      background-color: #e0e0e0;
+      border-radius: 5rem;
+      background-color: #ececec;
       color: #222;
-      font-size: 1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s;
     }
@@ -50,17 +60,23 @@
       margin-top: 1rem;
     }
     #download-btn, #copy-btn {
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
+      font-family: jf-openhuninn;
+      height: 4rem;
+      padding: 0.8rem 1rem;
       border: none;
-      border-radius: 8px;
-      margin: 1rem;
+      border-radius: 5rem;
+      background-color: #ececec;
+      color: #222;
+      font-size: 1.2rem;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
   </style>
 </head>
 <body>
-<div class="container" id="q0"><div class="question">💻 完成任務後，你是否還會一直懷疑自己是不是哪裡搞砸？</div><div class="options"><button class="option-btn" onclick="answer(0, 0)">A. 不會，我做完就放下了</button><button class="option-btn" onclick="answer(0, 1)">B. 有時候會回頭檢查一下</button><button class="option-btn" onclick="answer(0, 2)">C. 常常腦中會自動播放「出錯重播帶」</button><button class="option-btn" onclick="answer(0, 3)">D. 根本無法放鬆，常因這樣再花時間修改</button></div></div><div class="container" id="q1"><div class="question">🎉 要出門參加聚會前，你的內心劇場是？</div><div class="options"><button class="option-btn" onclick="answer(1, 0)">A. 超期待啊～好久沒跟大家聊天了！</button><button class="option-btn" onclick="answer(1, 1)">B. 有一點小緊張，但還是會去</button><button class="option-btn" onclick="answer(1, 2)">C. 常常會想各種尷尬場面，然後開始焦慮</button><button class="option-btn" onclick="answer(1, 3)">D. 能不去就不去，光是準備就好累</button></div></div><div class="container" id="q2"><div class="question">☕️ 你會選擇去哪裡工作或讀書？</div><div class="options"><button class="option-btn" onclick="answer(2, 0)">A. 咖啡廳！有點白噪音剛剛好</button><button class="option-btn" onclick="answer(2, 1)">B. 家裡，最自在</button><button class="option-btn" onclick="answer(2, 2)">C. 不管在哪，我都很容易分心</button><button class="option-btn" onclick="answer(2, 3)">D. 最近很難集中精神，去哪都一樣</button></div></div><div class="container" id="q3"><div class="question">🩺 哪怕身體沒什麼異狀，你是否常猜測自己是不是生病了？</div><div class="options"><button class="option-btn" onclick="answer(3, 0)">A. 不會耶，我不太會亂想</button><button class="option-btn" onclick="answer(3, 1)">B. 偶爾會查個症狀安慰自己</button><button class="option-btn" onclick="answer(3, 2)">C. 常常覺得有點不對勁但又說不上來</button><button class="option-btn" onclick="answer(3, 3)">D. 一不舒服就開始擔心是重大疾病</button></div></div><div class="container" id="q4"><div class="question">💸 收入正常的狀態下，你會不會還是常擔心錢不夠？</div><div class="options"><button class="option-btn" onclick="answer(4, 0)">A. 不會啦～花錢開心最重要</button><button class="option-btn" onclick="answer(4, 1)">B. 有些時候會想要多存點</button><button class="option-btn" onclick="answer(4, 2)">C. 我很難放下對未來財務的焦慮</button><button class="option-btn" onclick="answer(4, 3)">D. 每筆花費都要盤算好幾輪</button></div></div><div class="container" id="q5"><div class="question">📱 滑 Reels 或抖音時，你的感受是？</div><div class="options"><button class="option-btn" onclick="answer(5, 0)">A. 純放鬆娛樂，看看大家在幹嘛</button><button class="option-btn" onclick="answer(5, 1)">B. 有時候覺得浪費時間但還是會看</button><button class="option-btn" onclick="answer(5, 2)">C. 看完會更焦慮，覺得自己落後</button><button class="option-btn" onclick="answer(5, 3)">D. 一滑就停不下來，像在逃避什麼</button></div></div><div class="container" id="q6"><div class="question">🍱 當你要決定今天晚餐吃什麼時，你的 OS 是？</div><div class="options"><button class="option-btn" onclick="answer(6, 0)">A. 看心情啊～隨便都好</button><button class="option-btn" onclick="answer(6, 1)">B. 會稍微考慮預算或健康</button><button class="option-btn" onclick="answer(6, 2)">C. 常常選太久、怕吃錯會後悔</button><button class="option-btn" onclick="answer(6, 3)">D. 小事也難決定，總覺得壓力很大</button></div></div><div class="container" id="q7"><div class="question">🌿 假日時，你會覺得自己真的有放鬆嗎？</div><div class="options"><button class="option-btn" onclick="answer(7, 0)">A. 有啊～耍廢就是我的專業</button><button class="option-btn" onclick="answer(7, 1)">B. 雖然有點工作陰影，但還可以放鬆</button><button class="option-btn" onclick="answer(7, 2)">C. 身體放鬆，心卻一直轉不停</button><button class="option-btn" onclick="answer(7, 3)">D. 根本無法靜下來，焦躁到不行</button></div></div><div class="container" id="q8"><div class="question">🌿 你喜歡香菜嗎？</div><div class="options"><button class="option-btn" onclick="answer(8, 0)">A. 超愛，香到爆</button><button class="option-btn" onclick="answer(8, 1)">B. 偶爾吃OK</button><button class="option-btn" onclick="answer(8, 2)">C. 超級討厭</button><button class="option-btn" onclick="answer(8, 3)">D. 最近連這種問題都讓我煩躁</button></div></div><div class="container" id="q9"><div class="question">🛌 最近你入睡順利嗎？</div><div class="options"><button class="option-btn" onclick="answer(9, 0)">A. 一躺下就睡著，沒困擾</button><button class="option-btn" onclick="answer(9, 1)">B. 偶爾會想事情想太久</button><button class="option-btn" onclick="answer(9, 2)">C. 常常睡前焦慮，難以入眠</button><button class="option-btn" onclick="answer(9, 3)">D. 半夜醒來後腦袋像開機，超煩</button></div></div><div class="container" id="q10"><div class="question">💓 壓力來時，你身體會有什麼反應？</div><div class="options"><button class="option-btn" onclick="answer(10, 0)">A. 還好耶，我滿能調適的</button><button class="option-btn" onclick="answer(10, 1)">B. 偶爾會冒汗或心跳快</button><button class="option-btn" onclick="answer(10, 2)">C. 常常感覺喘、手發麻之類的</button><button class="option-btn" onclick="answer(10, 3)">D. 那種不舒服會持續一整天</button></div></div><div class="container" id="q11"><div class="question">🔮 想到未來時，你的腦中會出現？</div><div class="options"><button class="option-btn" onclick="answer(11, 0)">A. 滿期待的，雖然有未知但還好</button><button class="option-btn" onclick="answer(11, 1)">B. 有些擔心，但相信會處理好</button><button class="option-btn" onclick="answer(11, 2)">C. 常想著會不會發生壞事</button><button class="option-btn" onclick="answer(11, 3)">D. 未來讓我超級焦慮，想逃避不想想</button></div></div><div class="container" id="q12"><div class="question">💸 你會常幻想一夜致富或中樂透嗎？</div><div class="options"><button class="option-btn" onclick="answer(12, 0)">A. 有趣的想法，當玩笑開開</button><button class="option-btn" onclick="answer(12, 1)">B. 偶爾幻想一下當逃避</button><button class="option-btn" onclick="answer(12, 2)">C. 很常，現實壓力太大了</button><button class="option-btn" onclick="answer(12, 3)">D. 超依賴這種幻想，覺得是唯一出口</button></div></div><div class="container" id="q13"><div class="question">🔁 事情結束後，你會反覆 replay 自己的表現嗎？</div><div class="options"><button class="option-btn" onclick="answer(13, 0)">A. 不太會，我放得下</button><button class="option-btn" onclick="answer(13, 1)">B. 會想一下有沒有可以改進的</button><button class="option-btn" onclick="answer(13, 2)">C. 常陷在「我是不是太白目」的迴圈</button><button class="option-btn" onclick="answer(13, 3)">D. 一直 replay 到睡不著</button></div></div>
+<div class="container" id="q0">
+  <img class="question_img" src="../image/Q01.jpg"><div class="question">💻 完成任務後，你是否還會一直懷疑自己是不是哪裡搞砸？</div><div class="options"><button class="option-btn" onclick="answer(0, 0)">A. 不會，我做完就放下了</button><button class="option-btn" onclick="answer(0, 1)">B. 有時候會回頭檢查一下</button><button class="option-btn" onclick="answer(0, 2)">C. 常常腦中會自動播放「出錯重播帶」</button><button class="option-btn" onclick="answer(0, 3)">D. 根本無法放鬆，常因這樣再花時間修改</button></div></div><div class="container" id="q1">
+      <img class="question_img" src="../image/Q02.jpg"><div class="question">🎉 要出門參加聚會前，你的內心劇場是？</div><div class="options"><button class="option-btn" onclick="answer(1, 0)">A. 超期待啊～好久沒跟大家聊天了！</button><button class="option-btn" onclick="answer(1, 1)">B. 有一點小緊張，但還是會去</button><button class="option-btn" onclick="answer(1, 2)">C. 常常會想各種尷尬場面，然後開始焦慮</button><button class="option-btn" onclick="answer(1, 3)">D. 能不去就不去，光是準備就好累</button></div></div><div class="container" id="q2"><img class="question_img" src="../image/Q03.jpg"><div class="question">☕️ 你會選擇去哪裡工作或讀書？</div><div class="options"><button class="option-btn" onclick="answer(2, 0)">A. 咖啡廳！有點白噪音剛剛好</button><button class="option-btn" onclick="answer(2, 1)">B. 家裡，最自在</button><button class="option-btn" onclick="answer(2, 2)">C. 不管在哪，我都很容易分心</button><button class="option-btn" onclick="answer(2, 3)">D. 最近很難集中精神，去哪都一樣</button></div></div><div class="container" id="q3"><img class="question_img" src="../image/Q04.jpg"><div class="question">🩺 哪怕身體沒什麼異狀，你是否常猜測自己是不是生病了？</div><div class="options"><button class="option-btn" onclick="answer(3, 0)">A. 不會耶，我不太會亂想</button><button class="option-btn" onclick="answer(3, 1)">B. 偶爾會查個症狀安慰自己</button><button class="option-btn" onclick="answer(3, 2)">C. 常常覺得有點不對勁但又說不上來</button><button class="option-btn" onclick="answer(3, 3)">D. 一不舒服就開始擔心是重大疾病</button></div></div><div class="container" id="q4"><img class="question_img" src="../image/Q05.jpg"><div class="question">💸 收入正常的狀態下，你會不會還是常擔心錢不夠？</div><div class="options"><button class="option-btn" onclick="answer(4, 0)">A. 不會啦～花錢開心最重要</button><button class="option-btn" onclick="answer(4, 1)">B. 有些時候會想要多存點</button><button class="option-btn" onclick="answer(4, 2)">C. 我很難放下對未來財務的焦慮</button><button class="option-btn" onclick="answer(4, 3)">D. 每筆花費都要盤算好幾輪</button></div></div><div class="container" id="q5"><img class="question_img" src="../image/Q06.jpg"><div class="question">📱 滑 Reels 或抖音時，你的感受是？</div><div class="options"><button class="option-btn" onclick="answer(5, 0)">A. 純放鬆娛樂，看看大家在幹嘛</button><button class="option-btn" onclick="answer(5, 1)">B. 有時候覺得浪費時間但還是會看</button><button class="option-btn" onclick="answer(5, 2)">C. 看完會更焦慮，覺得自己落後</button><button class="option-btn" onclick="answer(5, 3)">D. 一滑就停不下來，像在逃避什麼</button></div></div><div class="container" id="q6"><img class="question_img" src="../image/Q07.jpg"><div class="question">🍱 當你要決定今天晚餐吃什麼時，你的 OS 是？</div><div class="options"><button class="option-btn" onclick="answer(6, 0)">A. 看心情啊～隨便都好</button><button class="option-btn" onclick="answer(6, 1)">B. 會稍微考慮預算或健康</button><button class="option-btn" onclick="answer(6, 2)">C. 常常選太久、怕吃錯會後悔</button><button class="option-btn" onclick="answer(6, 3)">D. 小事也難決定，總覺得壓力很大</button></div></div><div class="container" id="q7"><img class="question_img" src="../image/Q08.jpg"><div class="question">🌿 假日時，你會覺得自己真的有放鬆嗎？</div><div class="options"><button class="option-btn" onclick="answer(7, 0)">A. 有啊～耍廢就是我的專業</button><button class="option-btn" onclick="answer(7, 1)">B. 雖然有點工作陰影，但還可以放鬆</button><button class="option-btn" onclick="answer(7, 2)">C. 身體放鬆，心卻一直轉不停</button><button class="option-btn" onclick="answer(7, 3)">D. 根本無法靜下來，焦躁到不行</button></div></div><div class="container" id="q8"><img class="question_img" src="../image/Q09.jpg"><div class="question">🌿 你喜歡香菜嗎？</div><div class="options"><button class="option-btn" onclick="answer(8, 0)">A. 超愛，香到爆</button><button class="option-btn" onclick="answer(8, 1)">B. 偶爾吃OK</button><button class="option-btn" onclick="answer(8, 2)">C. 超級討厭</button><button class="option-btn" onclick="answer(8, 3)">D. 最近連這種問題都讓我煩躁</button></div></div><div class="container" id="q9"><img class="question_img" src="../image/Q10.jpg"><div class="question">🛌 最近你入睡順利嗎？</div><div class="options"><button class="option-btn" onclick="answer(9, 0)">A. 一躺下就睡著，沒困擾</button><button class="option-btn" onclick="answer(9, 1)">B. 偶爾會想事情想太久</button><button class="option-btn" onclick="answer(9, 2)">C. 常常睡前焦慮，難以入眠</button><button class="option-btn" onclick="answer(9, 3)">D. 半夜醒來後腦袋像開機，超煩</button></div></div><div class="container" id="q10"><img class="question_img" src="../image/Q11.jpg"><div class="question">💓 壓力來時，你身體會有什麼反應？</div><div class="options"><button class="option-btn" onclick="answer(10, 0)">A. 還好耶，我滿能調適的</button><button class="option-btn" onclick="answer(10, 1)">B. 偶爾會冒汗或心跳快</button><button class="option-btn" onclick="answer(10, 2)">C. 常常感覺喘、手發麻之類的</button><button class="option-btn" onclick="answer(10, 3)">D. 那種不舒服會持續一整天</button></div></div><div class="container" id="q11"><img class="question_img" src="../image/Q12.jpg"><div class="question">🔮 想到未來時，你的腦中會出現？</div><div class="options"><button class="option-btn" onclick="answer(11, 0)">A. 滿期待的，雖然有未知但還好</button><button class="option-btn" onclick="answer(11, 1)">B. 有些擔心，但相信會處理好</button><button class="option-btn" onclick="answer(11, 2)">C. 常想著會不會發生壞事</button><button class="option-btn" onclick="answer(11, 3)">D. 未來讓我超級焦慮，想逃避不想想</button></div></div><div class="container" id="q12"><img class="question_img" src="../image/Q13.jpg"><div class="question">💸 你會常幻想一夜致富或中樂透嗎？</div><div class="options"><button class="option-btn" onclick="answer(12, 0)">A. 有趣的想法，當玩笑開開</button><button class="option-btn" onclick="answer(12, 1)">B. 偶爾幻想一下當逃避</button><button class="option-btn" onclick="answer(12, 2)">C. 很常，現實壓力太大了</button><button class="option-btn" onclick="answer(12, 3)">D. 超依賴這種幻想，覺得是唯一出口</button></div></div><div class="container" id="q13"><img class="question_img" src="../image/Q14.jpg"><div class="question">🔁 事情結束後，你會反覆 replay 自己的表現嗎？</div><div class="options"><button class="option-btn" onclick="answer(13, 0)">A. 不太會，我放得下</button><button class="option-btn" onclick="answer(13, 1)">B. 會想一下有沒有可以改進的</button><button class="option-btn" onclick="answer(13, 2)">C. 常陷在「我是不是太白目」的迴圈</button><button class="option-btn" onclick="answer(13, 3)">D. 一直 replay 到睡不著</button></div></div>
 <div class="container" id="result">
   <div class="question" id="result-text">測驗完成！正在分析結果...</div>
   <canvas id="resultCanvas" width="1080" height="1920"></canvas>
@@ -71,6 +87,8 @@
 </div>
 
 <script>
+
+
   let current = 0;
   let scores = [];
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>焦慮測驗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="anxiety_test_style.css" />
+  <script src="anxiety_test_script.js"></script>
+</head>
+<style>
+    @font-face {
+    font-family: jf-openhuninn;
+    src: url(../font/jf-openhuninn-2.0.ttf);
+    }
+    body {
+    font-family: jf-openhuninn;
+      width: 100%;
+      margin: 0;
+      background-color: #fff;
+    }
+    #home {
+        background-image: url(../image/star.jpg);
+        background-repeat: no-repeat;
+        background-size: 90%;
+        background-position: center;
+        overflow: hidden;
+      display: block;
+      text-align: center;
+    }
+    h1 {
+        font-size: 100px;
+        margin: 20px;        
+    }
+
+    p {
+        margin-top: 250px;
+        font-size: 12px;
+    }
+
+    button {
+        font-family: jf-openhuninn;
+        margin-top: 400px;
+        color: #000;
+        font-size: 30px;
+        height: 80px;
+        width: 200px;
+        border-radius: 50px;
+        background-color: #fff
+        ;
+    }
+
+    button:hover {
+        color: #fff;
+        background-color: #000;
+    }
+    
+</style>
+
+<body>
+
+  <!-- 首頁 -->
+  <div id="home">
+    <p>了解你的焦慮狀況，幫助你更認識自己</p>
+    <a href="./index.html">
+    <button id ="start-btn" >開始測驗</button>
+    </a>
+  </div>
