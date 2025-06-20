@@ -114,7 +114,7 @@
     function moveDrag(x) {
       const delta = x - dragStartX;
       const newMid = currentMidWidth + delta;
-      const minDrag = 200;
+      const minDrag = 100;
       const maxDrag = window.innerWidth - 2 * sideMargin;
       const clamped = Math.max(minDrag, Math.min(maxDrag, newMid));
       currentMidWidth = updatePath(clamped);
