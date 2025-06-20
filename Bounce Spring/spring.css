@@ -39,7 +39,7 @@
     #dragHandle {
       position: absolute;
       top: 185px;
-      right: 10px;
+      right: 30px;
       width: 10px;
       height: 80px;
       border-radius: 18px;
@@ -64,6 +64,10 @@
 
     /*行動版開始*/
 @media screen and (max-width: 767px) {
+
+  #dragHandle {
+    width: 20px;
+  }
 
   h1 {
     font-size: 80px;
