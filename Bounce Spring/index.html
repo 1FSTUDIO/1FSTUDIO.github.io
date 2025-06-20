@@ -107,36 +107,56 @@
 
     updatePath(currentMidWidth);
 
+    function startDrag(x) {
+      dragStartX = x;
+    }
+
+    function moveDrag(x) {
+      const delta = x - dragStartX;
+      const newMid = currentMidWidth + delta;
+      const minDrag = 200;
+      const maxDrag = window.innerWidth - 2 * sideMargin;
+      const clamped = Math.max(minDrag, Math.min(maxDrag, newMid));
+      currentMidWidth = updatePath(clamped);
+    }
+
+    function stopDrag() {
+      gsap.to({ w: currentMidWidth }, {
+        duration: 1.2,
+        w: window.innerWidth - 2 * sideMargin,
+        ease: "elastic.out(1, 0.3)",
+        onUpdate() {
+          currentMidWidth = updatePath(this.targets()[0].w);
+        }
+      });
+    }
+
+    // 滑鼠事件
     handle.addEventListener('mousedown', (e) => {
-      dragStartX = e.clientX;
+      startDrag(e.clientX);
       document.body.style.cursor = 'ew-resize';
-
-      function onMouseMove(ev) {
-        const delta = ev.clientX - dragStartX;
-        const newMid = currentMidWidth + delta;
-        const minDrag = 200;
-        const maxDrag = window.innerWidth - 2 * sideMargin;
-        const clamped = Math.max(minDrag, Math.min(maxDrag, newMid));
-        currentMidWidth = updatePath(clamped);
-      }
-
+      function onMouseMove(ev) { moveDrag(ev.clientX); }
       function onMouseUp() {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
         document.body.style.cursor = 'default';
-
-        gsap.to({ w: currentMidWidth }, {
-          duration: 1.2,
-          w: window.innerWidth - 2 * sideMargin,
-          ease: "elastic.out(1, 0.3)",
-          onUpdate() {
-            currentMidWidth = updatePath(this.targets()[0].w);
-          }
-        });
+        stopDrag();
       }
-
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
+    });
+
+    // 觸控事件
+    handle.addEventListener('touchstart', (e) => {
+      startDrag(e.touches[0].clientX);
+    }, { passive: true });
+
+    handle.addEventListener('touchmove', (e) => {
+      moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+
+    handle.addEventListener('touchend', () => {
+      stopDrag();
     });
 
     window.addEventListener('resize', () => {
